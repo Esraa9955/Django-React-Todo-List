@@ -11,10 +11,7 @@ export const AuthProvider = ({ children }) => {
     return tokens ? JSON.parse(tokens) : null;
   });
 
-  const [user, setUser] = useState(() => {
-    const tokens = localStorage.getItem("authTokens");
-    return tokens ? jwtDecode(tokens) : null;
-  });
+  const [user, setUser] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (authTokens) {
-      setUser(jwtDecode(authTokens));
+      setUser(jwtDecode(authTokens.access));
     }
     setLoading(false);
   }, [authTokens]);
@@ -127,6 +124,8 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
   };
+
+
 
   return (
     <AuthContext.Provider value={contextData}>

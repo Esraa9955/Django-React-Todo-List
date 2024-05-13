@@ -1,12 +1,22 @@
 import React from 'react'
+import {useContext } from 'react'
 import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 function Loginpage() {
+  const {loginUser} = useContext(AuthContext)
+  const handleSubmit = e => {
+    e.preventDefault();
+    const email = e.target.email.value
+    const password = e.target.password.value
+    email.length > 0 && loginUser(email, password)
+    console.log(email)
+    console.log(password)
+  }
   return (
     <div>
       <>
       <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
-        <br />
-        <br />
+        
     <div className="container py-5 h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col col-xl-10">
@@ -23,7 +33,7 @@ function Loginpage() {
               <div className="col-md-6 col-lg-7 d-flex align-items-center">
                 <div className="card-body p-4 p-lg-5 text-black">
                   {/* <form onSubmit={handleSubmit}> */}
-                  <form >
+                  <form onSubmit={handleSubmit}>
                     <div className="d-flex align-items-center mb-3 pb-1">
                       <i
                         className="fas fa-cubes fa-2x me-3"
@@ -73,21 +83,21 @@ function Loginpage() {
                         Login
                       </button>
                     </div>
-                    <a className="small text-muted" href="#!">
+                    <Link className="small text-muted" to="h">
                       Forgot password?
-                    </a>
+                    </Link>
                     <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                       Don't have an account?{" "}
                       <Link to="/register" style={{ color: "#393f81" }}>
                         Register Now 
                       </Link>
                     </p>
-                    <a href="#!" className="small text-muted">
+                    <Link to="h" className="small text-muted">
                       Terms of use.
-                    </a>
-                    <a href="#!" className="small text-muted">
+                    </Link>
+                    <Link to="h" className="small text-muted">
                       Privacy policy
-                    </a>
+                    </Link>
                   </form>
                 </div>
               </div>

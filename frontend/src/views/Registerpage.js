@@ -1,8 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState, useContext} from 'react'
+import AuthContext from '../context/AuthContext'
 function Registerpage() {
+  const [email,setEmail] = useState('')
+  const [username,setUsername] = useState('')
+  const [password,setPassword] = useState('')
+  const [password2,setPassword2] = useState('')
+  const{registerUser}= useContext(AuthContext)
+  console.log(email);
+  console.log(username);
+  console.log(password);
+  const handleSubmit = async e => {
+    e.preventDefault()
+    registerUser(email,username,password,password2)
+    
+  }
   return (
-    <div>
+   
+
       <>
       <section className="vh-100" style={{ backgroundColor: "#9A616D" }}>
           <div className="container py-5 h-100">
@@ -20,15 +36,14 @@ function Registerpage() {
                     </div>
                     <div className="col-md-6 col-lg-7 d-flex align-items-center">
                       <div className="card-body p-4 p-lg-5 text-black">
-                        {/* <form onSubmit={handleSubmit}> */}
-                        <form >
+                        <form onSubmit={handleSubmit}>
                           <div className="d-flex align-items-center mb-3 pb-1">
                             <i
                               className="fas fa-cubes fa-2x me-3"
                               style={{ color: "#ff6219" }}
                             />
                             <span className="h2 fw-bold mb-0">
-                              Welcome to <b>Desphixs👋</b>
+                              Welcome to <b>Chatty👋</b>
                             </span>
                           </div>
                           <h5
@@ -43,7 +58,7 @@ function Registerpage() {
                               id="form2Example17"
                               className="form-control form-control-lg"
                               placeholder="Email Address"
-                              // onChange={e => setEmail(e.target.value)}
+                               onChange={e => setEmail(e.target.value)}
                             />
                           </div>
                           <div className="form-outline mb-4">
@@ -52,7 +67,7 @@ function Registerpage() {
                               id="form2Example17"
                               className="form-control form-control-lg"
                               placeholder="Username"
-                              // onChange={e => setUsername(e.target.value)}
+                              onChange={e => setUsername(e.target.value)}
 
                             />
                           </div>
@@ -62,7 +77,7 @@ function Registerpage() {
                               id="form2Example17"
                               className="form-control form-control-lg"
                               placeholder="Password"
-                              // onChange={e => setPassword(e.target.value)}
+                              onChange={e => setPassword(e.target.value)}
 
                             />
                           </div>
@@ -72,7 +87,7 @@ function Registerpage() {
                               id="form2Example27"
                               className="form-control form-control-lg"
                               placeholder="Confirm Password"
-                              // onChange={e => setPassword2(e.target.value)}
+                              onChange={e => setPassword2(e.target.value)}
 
                             />
                           </div>
@@ -84,21 +99,21 @@ function Registerpage() {
                               Register
                             </button>
                           </div>
-                          <a className="small text-muted" href="#!">
+                          <Link className="small text-muted" to="h">
                             Forgot password?
-                          </a>
+                          </Link>
                           <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                             Already have an account?{" "}
                             <Link to="/login" style={{ color: "#393f81" }}>
                               Login Now
                             </Link>
                           </p>
-                          <a href="#!" className="small text-muted">
+                          <Link to="h" className="small text-muted">
                             Terms of use.
-                          </a>
-                          <a href="#!" className="small text-muted">
+                          </Link>
+                          <Link to="h" className="small text-muted">
                             Privacy policy
-                          </a>
+                          </Link>
                         </form>
                       </div>
                     </div>
@@ -122,7 +137,7 @@ function Registerpage() {
           {/* Copyright */}
         </footer>
       </>
-    </div>
+
   )
 }
 
